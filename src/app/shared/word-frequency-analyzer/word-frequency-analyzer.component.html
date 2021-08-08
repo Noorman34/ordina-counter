@@ -1,0 +1,45 @@
+<div *ngIf="showOutcome === 'highest'" class="container mt-3">
+  <div class="p-6 border bg-info">
+    <h4 class="p-1">The highest frequency for any word in this text is: {{ highestFrequency }}</h4>
+  </div>
+</div>
+<div *ngIf="showOutcome === 'frequency'" class="container mt-3">
+  <div class="p-6 border bg-info row" *ngIf="highestFrequencyNumber > 0">
+    <h4 class="p-1">The frequency for word: <b>{{ highestFrequencyWord }}</b> = {{ highestFrequencyNumber }}</h4>
+  </div>
+  <div class="p-6 border bg-info row" *ngIf="highestFrequencyNumber < 0">
+    <h4 class="p-1">There was no match for the word you entered</h4>
+  </div>
+</div>
+<div *ngIf="showOutcome === 'most'" class="container mt-3">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Word</th>
+        <th scope="col">Frequency</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let nWord of answerArray; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ nWord['word'] }}</td>
+        <td>{{ nWord['frequency'] }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<hr *ngIf="displayResult" class="mt-3">
+<div class="container mt-3" *ngIf="displayResult">
+  <div class="container">
+    <h6>Original text:</h6>
+    <div class="border bg-light p-1"><h6> {{ rawInput }}</h6></div>
+  </div>
+  <div class="container mt-3">
+    <div class="row row-cols-1 row-cols-sm-5 g-2 g-lg-3">
+      <div *ngFor="let countedWord of countedWordArray; let i = index" class="col">
+        <div class="p-6 border bg-light p-1"><h6><span class="badge bg-secondary">{{ countedWordArray[i].getFrequency }}</span> {{ countedWordArray[i].getWord }} </h6></div>
+      </div>
+    </div>
+  </div>
+</div>

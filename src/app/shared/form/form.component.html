@@ -1,0 +1,43 @@
+<div class="container top-margin">
+    <div class="row">
+        <form (ngSubmit)="onSubmit()" #f="ngForm">
+            <div id="text-input">
+                <div class="form-group">
+                    <label for="rawtext">Your text</label>
+                    <textarea 
+                    type="text" 
+                    id="rawtext" 
+                    class="form-control" 
+                    ngModel 
+                    name="rawtext" 
+                    required
+                    #rawtext="ngModel"></textarea>
+                </div>
+                <span class="help-block" *ngIf="!rawtext.valid && rawtext.touched">Please enter your text here</span>
+            </div>
+        </form>
+    </div>
+    <div class="btn-toolbar justify-content-between mt-3">
+        <div class="btn-group" role="group" aria-label="First group">
+            <button (click)="getHighestFrequency()" 
+            type="button" 
+            class="btn btn-outline-secondary" 
+            [disabled]="!f.valid">Highest Frequency</button>
+        </div>
+        <div class="btn-group" role="group" aria-label="Second group">
+            <div class="input-group-text">
+                <input type="text" id="checkword" name="checkword" [(ngModel)]="checkword" [disabled]="!f.valid">
+            </div>
+            <!-- <h1> {{checkword}}</h1> -->
+            <button type="button" (click)="getFrequencyWord(checkword)" [disabled]="!f.valid" class="btn btn-outline-secondary">Get Frequency</button>
+        </div>
+        <div class="btn-group" role="group" aria-label="Third group">
+            <div class="input-group-text">
+                <input type="number" id="inputnumber" name="inputnumber" [(ngModel)]="inputnumber" min="1" [disabled]="!f.valid">
+            </div>
+            <!-- <h1> {{inputword}}</h1> -->
+            <button type="button" (click)="getListWordFrequency(inputnumber)" [disabled]="!f.valid" class="btn btn-outline-secondary">Get List</button>
+        </div>
+    </div>
+</div>
+
